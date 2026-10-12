@@ -2,26 +2,28 @@
 const route = useRoute();
 
 const props = defineProps<{
-	to: string;
-	icon: string;
-	pageId: string;
+    to: string;
+    icon: string;
+    pageId: string;
 }>();
 
-const hilight = computed(() => {
-	return String(route.meta.pageId) === props.pageId;
+const highlight = computed(() => {
+    return String(route.meta.pageId) === props.pageId;
 });
 </script>
 
 <template>
-	<NuxtLink
-		:to="props.to"
-		class="rounded-field px-3 py-1 flex items-center gap-3"
+    <NuxtLink
+        :to="props.to"
+        class="ui-btn ui-btn-sm"
         :class="{
-            'bg-base-100 border border-base-300': hilight,
-            'hover:bg-base-300 border border-transparent': !hilight
+            'ui-btn-outline': highlight,
+            'ui-btn-ghost': !highlight,
         }"
-	>
-		<Icon :name="icon"></Icon>
-		<slot></slot>
-	</NuxtLink>
+    >
+        <Icon :name="icon" class="btn-icon-sm"></Icon>
+        <span>
+            <slot></slot>
+        </span>
+    </NuxtLink>
 </template>
